@@ -5,14 +5,14 @@ class Register:
      textbox_email_id = "reg_email"
      textbox_password_id = "reg_password"
      button_register_xpath = '//*[@id="customer_login"]/div[2]/form/p[3]/button'
-     error_already_redisterd_xpath = '//*[@id="content"]/div/div[1]/ul/li'
+
      error_registerd = "Error: An account is already registered with your email address. Please log in."
-     error_no_password_xpath = '//*[@id="content"]/div/div[1]/ul/li'
      error_no_password = "Error: Please enter an account password."
      error_weak_password_xpath = '//*[@id="customer_login"]/div[2]/form/p[2]/span/div'
      error_weak_password = "Very weak - Please enter a stronger password."
      register_title_xpath = '//*[@id="customer_login"]/div[2]/h2'
-
+     error_empty_field = "Error: Please provide a valid email address."
+     error_msg_xpath = '//*[@id="content"]/div/div[1]/ul/li'
      #constructer
      def __init__(self,driver):
         self.driver = driver
@@ -43,18 +43,9 @@ class Register:
              print("register button  not found!")
              assert False
 
-
-     def getErrorRedister(self):
+     def getError(self):
          try:
-             msg_error = self.driver.find_element(By.XPATH, self.error_already_redisterd_xpath).text
-             return msg_error
-         except NoSuchElementException:
-             print("couldn't find error message!")
-             assert False
-
-     def getErrorNoPassword(self):
-         try:
-             msg_error = self.driver.find_element(By.XPATH, self.error_no_password_xpath).text
+             msg_error = self.driver.find_element(By.XPATH, self.error_msg_xpath).text
              return msg_error
 
          except NoSuchElementException:
@@ -78,3 +69,4 @@ class Register:
           return True
          except NoSuchElementException:
              return False
+

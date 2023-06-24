@@ -57,12 +57,11 @@ class Test_register:
         time.sleep(2)
         self.reg_obj.clickRegister()
         time.sleep(2)
-        err= self.reg_obj.getErrorRedister()
+        err= self.reg_obj.getError()
+        print(err)
         if err == self.reg_obj.error_registerd:
-            print(err)
             assert True
         else:
-            print(err)
             assert False
         time.sleep(2)
         self.driver.close()
@@ -81,12 +80,11 @@ class Test_register:
         time.sleep(2)
         self.reg_obj.clickRegister()
         time.sleep(2)
-        err = self.reg_obj.getErrorNoPassword()
+        err = self.reg_obj.getError()
+        print(err)
         if err == self.reg_obj.error_no_password:
-            print(err)
             assert True
         else:
-            print(err)
             assert False
         time.sleep(2)
         self.driver.close()
@@ -97,7 +95,6 @@ class Test_register:
         # objets
         self.main_obj = MainStorePage(self.driver)
         self.reg_obj = Register(self.driver)
-        self.lg_obj = Login(self.driver)
         self.main_obj.goToMyAccount()
         time.sleep(1)
         self.reg_obj.setEmail(self.email)
@@ -107,11 +104,10 @@ class Test_register:
         self.reg_obj.clickRegister()
         time.sleep(2)
         err = self.reg_obj.getErrorWeakPassword()
+        print(err)
         if err == self.reg_obj.error_weak_password:
-            print(err)
             assert True
         else:
-            print(err)
             assert False
         time.sleep(2)
         self.driver.close()
@@ -122,7 +118,6 @@ class Test_register:
         # objets
         self.main_obj = MainStorePage(self.driver)
         self.reg_obj = Register(self.driver)
-        self.lg_obj = Login(self.driver)
         self.main_obj.goToMyAccount()
         time.sleep(1)
         self.reg_obj.setEmail(self.invalid_email)
@@ -137,6 +132,25 @@ class Test_register:
             assert True
         else:
             print("invalid email accepted!")
+            assert False
+        time.sleep(2)
+        self.driver.close()
+
+    def test_empty_field(self,setup):
+        self.driver = setup
+        self.driver.get(self.baseURL)
+        # objets
+        self.main_obj = MainStorePage(self.driver)
+        self.reg_obj = Register(self.driver)
+        self.main_obj.goToMyAccount()
+        time.sleep(1)
+        self.reg_obj.clickRegister()
+        time.sleep(2)
+        err = self.reg_obj.getError()
+        print(err)
+        if err == self.reg_obj.error_empty_field:
+            assert True
+        else:
             assert False
         time.sleep(2)
         self.driver.close()
