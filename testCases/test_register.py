@@ -6,7 +6,7 @@ import time
 
 class Test_register:
     baseURL = "http://demostore.supersqa.com/"
-    email = "n9@g.com"
+    email = "n9@g.com" #change every test-new account
     email2 = "n@g.com"
     email3 = "n94@g.com"
     password = "123@456tredf#"
