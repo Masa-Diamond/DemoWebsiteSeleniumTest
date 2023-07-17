@@ -1,0 +1,1 @@
+[33mWARNING [0m selenium.webdriver.common.selenium_manager:selenium_manager.py:125 Incompatible release of chromedriver (version 113.0.5672.63) detected in PATH: D:\user\PycharmProjects\testDemo\chromedriver.exe

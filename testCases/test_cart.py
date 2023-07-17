@@ -3,6 +3,7 @@ from pageObjects.LoginPage import Login
 from pageObjects.Items import Items
 from pageObjects.CartPage import Cart
 import time
+import allure
 
 class Test_cart:
     baseURL = "http://demostore.supersqa.com/"

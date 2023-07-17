@@ -10,3 +10,11 @@ def setup():
     s = Service("\chromedriver.exe")
     driver = webdriver.Chrome(options=options, service=s)
     return driver
+
+
+# def pytest_addoption(parser):
+#     parser.addoption("--browser")
+#
+# @pytest.fixture()
+# def browser(request):
+#     return request.config.getoption("--browser")
