@@ -9,10 +9,11 @@ class MainStorePage:
     button_cart_xpath = '//*[@id="site-navigation"]/div[1]/ul/li[2]/a'
     button_checkout_xpath = '//*[@id="site-navigation"]/div[1]/ul/li[3]/a'
     button_sample_page_xpath = '//*[@id="site-navigation"]/div[1]/ul/li[5]/a'
-    view_cart_xpath = '//*[@id="site-header-cart"]/li[1]/a'
     textbox_search_product_id = "woocommerce-product-search-field-0"
     check_item_home_page_xpath = '//*[@id="main"]/ul/li[4]'
-    page_title_className = 'woocommerce-products-header'
+    #page_title_className = 'woocommerce-products-header'
+    page_title_xpath = '//*[@id="main"]/header/h1'
+    button_next_page_xpath = '//*[@id="main"]/div[1]/nav/ul/li[4]/a'
 
 
 
@@ -59,13 +60,7 @@ class MainStorePage:
          print("Sample Page button Not fount!")
          assert False
 
-    def viewCart(self):
-        try:
-         self.driver.find_element(By.XPATH, self.view_cart_xpath).click()
-         print("view Cart button found")
-        except NoSuchElementException:
-         print("view Cart button Not fount!")
-         assert False
+
 
     def searchProduct(self, product):
         try:
@@ -86,9 +81,17 @@ class MainStorePage:
 
     def getPageTtile(self):
         try:
-            title =self.driver.find_element(By.CLASS_NAME, self.page_title_className).text
+            title =self.driver.find_element(By.XPATH, self.page_title_xpath).text
             print("title found")
             return title
         except NoSuchElementException:
             print("title Not found!")
+            assert False
+
+    def goToNextPage(self):
+        try:
+            self.driver.find_element(By.XPATH, self.button_next_page_xpath).click()
+            print("next page button found")
+        except NoSuchElementException:
+            print("next page button Not found!")
             assert False

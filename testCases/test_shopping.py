@@ -27,6 +27,7 @@ class Test_shopping:
         print("product category: " + category)
 
 
+
     def test_searching(self,setup):
         self.driver = setup
         self.driver.get(self.baseURL)
@@ -68,6 +69,23 @@ class Test_shopping:
             print("didn't find the product")
             assert False
 
+    def test_items_count(self, setup):
+        self.driver = setup
+        self.driver.get(self.baseURL)
+        # objets
+        self.main_obj = MainStorePage(self.driver)
+        self.item_obj = Items(self.driver)
+        self.main_obj.goToHome()
+        time.sleep(1)
+        count = self.item_obj.getItemsCount()
+        print("items count page1: " + str(count))
+        time.sleep(1)
+        self.main_obj.goToNextPage()
+        count = self.item_obj.getItemsCount()
+        print("items count page2: " + str(count))
+
+
+
     def test_item_info(self, setup):
         self.driver = setup
         self.driver.get(self.baseURL)
@@ -77,7 +95,7 @@ class Test_shopping:
         self.main_obj.searchProduct("cap")
         time.sleep(1)
         self.get_product_info()
-        print("items info are availble from search")
+        print("items info are available from search")
         self.main_obj.goToHome()
         self.main_obj.checkItem()
         time.sleep(2)
@@ -107,3 +125,14 @@ class Test_shopping:
         time.sleep(1)
         count = self.item_obj.getItemsCount()
         print("items count: " + str(count))
+
+    def test_view_collection(self,setup):
+        self.driver = setup
+        self.driver.get(self.baseURL)
+        # objets
+        self.main_obj = MainStorePage(self.driver)
+        self.item_obj = Items(self.driver)
+        self.main_obj.searchProduct("Logo Collection")
+        time.sleep(1)
+        self.item_obj.viewCollectionPic()
+
